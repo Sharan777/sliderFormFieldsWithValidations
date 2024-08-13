@@ -1,0 +1,88 @@
+<p>home works!</p>
+
+<!-- <mat-card>
+  <mat-card-content>
+    <h2 class="example-h2">Slider configuration</h2>
+
+    <section class="example-section">
+      <mat-form-field class="example-margin example-width">
+        <mat-label>Value</mat-label>
+        <input matInput type="number" [(ngModel)]="value">
+      </mat-form-field>
+      <mat-form-field class="example-margin example-width">
+        <mat-label>Min value</mat-label>
+        <input matInput type="number" [(ngModel)]="min">
+      </mat-form-field>
+      <mat-form-field class="example-margin example-width">
+        <mat-label>Max value</mat-label>
+        <input matInput type="number" [(ngModel)]="max">
+      </mat-form-field>
+      <mat-form-field class="example-margin example-width">
+        <mat-label>Step size</mat-label>
+        <input matInput type="number" [(ngModel)]="step">
+      </mat-form-field>
+    </section>
+
+    <section class="example-section">
+      <mat-checkbox [(ngModel)]="showTicks">Show ticks</mat-checkbox>
+    </section>
+
+    <section class="example-section">
+      <mat-checkbox [(ngModel)]="thumbLabel">Show thumb label</mat-checkbox>
+    </section>
+
+    <section class="example-section">
+      <mat-checkbox [(ngModel)]="disabled">Disabled</mat-checkbox>
+    </section>
+  </mat-card-content>
+</mat-card> -->
+
+<form [formGroup]="genericForm" (ngSubmit)="onSubmit()">
+  <mat-card class="example-result-card">
+    <mat-card-content>
+      <h2>Result</h2>
+      <div>
+        <mat-radio-group
+          aria-label="Select an option"
+          formControlName="enableSlider"
+        >
+          <mat-label> Approval : </mat-label>
+          <mat-radio-button value="true">Yes</mat-radio-button>
+          <mat-radio-button value="false">No</mat-radio-button>
+        </mat-radio-group>
+      </div>
+      <div class="example-label-container">
+        <label id="example-name-label" class="example-name-label">Value</label>
+        <label class="example-value-label">{{ slider.value }}</label>
+      </div>
+      <mat-slider
+        class="example-margin"
+        [disabled]="sliderValue.disabled"
+        [max]="sliderValue.max"
+        [min]="sliderValue.min"
+        [step]="sliderValue.step"
+        [discrete]="sliderValue.thumbLabel"
+        [showTickMarks]="sliderValue.showTicks"
+      >
+        <input matSliderThumb formControlName="slider" #slider />
+      </mat-slider>
+
+      <div>
+        <mat-label>Data : </mat-label>
+        <textarea
+          matInput
+          formControlName="data"
+          cdkTextareaAutosize
+          #autosize="cdkTextareaAutosize"
+          cdkAutosizeMinRows="3"
+          cdkAutosizeMaxRows="5"
+          [maxlength]="sliderValue.max"
+        ></textarea>
+      </div>
+    </mat-card-content>
+
+    <button mat-flat-button type="submit" [disabled]="!genericForm.valid">
+      Submit
+    </button>
+  </mat-card>
+</form>
